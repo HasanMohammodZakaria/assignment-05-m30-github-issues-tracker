@@ -19,7 +19,9 @@
     <!-- font awesome cdn -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/> -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         * {
@@ -30,9 +32,9 @@
 </head>
 
 <body>
-
+    <!-- HEADER DESIGN -->
     <header class="">
-        <div class="navbar bg-base-100 shadow-sm w-full">
+        <div class="navbar bg-base-100 shadow-sm w-full mb-15">
             <div class="w-11/12 mx-auto flex flex-col md:flex-row justify-between">
                 <div class="flex-1 flex flex-col items-center gap-1 mb-4 md:mb-0 md:flex-row md:items-center md:gap-2 ">
                     <img src="./assets/github-logo.png" alt="" class="w-10">
@@ -43,18 +45,70 @@
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                             <i class="fa-solid fa-magnifying-glass text-[#64748B]"></i>
                         </span>
-                        <input type="text" placeholder="Search issues..." class="input input-bordered w-full pl-10 text-[#64748B]" />
+                        <input type="text" placeholder="Search issues..."
+                            class="input input-bordered w-full pl-10 text-[#64748B]" />
                     </div>
-                    
+
                     <button class="btn btn-primary flex items-center gap-2 w-full sm:w-auto justify-center">
                         <i class="fa-solid fa-plus"></i> New Issue
                     </button>
-                        
-                    
+
+
                 </div>
             </div>
         </div>
     </header>
+
+    <main>
+        <!-- BTN TRACKER SECTION -->
+        <section class="">
+            <div
+                class="btn-container w-full sm:w-11/12 lg:w-10/12 mx-auto bg-white p-6 drop-shadow-sm rounded-lg flex gap-3 flex-wrap">
+
+                <button id="all-issues-tracker-btn" class="btn btn-primary w-[120px]">
+                    All
+                </button>
+
+                <button id="open-issues-tracker-btn" class="btn btn-outline w-[120px]">
+                    Open
+                </button>
+
+                <button id="closed-issues-tracker-btn" class="btn btn-outline w-[120px]">
+                    Closed
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- UPDATE ISSUES TRACKER SECTION -->
+        <section>
+            <div class="w-full sm:w-11/12 lg:w-10/12 mx-auto flex flex-col md:flex-row md:justify-between md:items-center bg-white drop-shadow-sm rounded-lg mt-4 px-6 py-4 gap-4">
+                
+                <div class="rigth-side card card-side flex justify-center items-center ">
+                    <div class="w-[50px] h-[50px] bg-[#ECE4FF] flex justify-center items-center rounded-full">
+                        <img src="./assets/Aperture.png" alt="" class="w-[30px] h-[30px]"/>
+                    </div>
+                    <div class="card-body flex fles-col gap-1">
+                        <h2 class="card-title text-xl font-semibold">50 Issues</h2>
+                        <p>Track and manage your project issues</p>
+                    </div>
+                </div>
+
+                <div class="left-side flex gap-4">
+                    <button class="font-medium text-[#1F2937]">
+                        <span class="text-[14px] text-[#00A96E]"><i class="fa-solid fa-circle"></i></span>
+                        Open
+                    </button>
+                    <button class="font-medium text-[#1F2937]">
+                        <span class="text-[14px] text-[#A855F7]"><i class="fa-solid fa-circle"></i></span>
+                        Closed
+                    </button>
+                </div>
+                
+            </div>
+        </section>
+    </main>
 
 
 

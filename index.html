@@ -27,7 +27,7 @@
 <body>
 
     <section class="login-section min-h-screen flex justify-center items-center">
-        <fieldset
+        <fieldset id="login-page"
             class="fieldset bg-white border-base-300 rounded-box p-8 drop-shadow-2xl w-full max-w-[520px] mx-auto flex flex-col justify-center">
 
             <!-- login content -->
@@ -44,14 +44,14 @@
             <!-- login form -->
             <form>
                 <label class="label text-left font-medium text-[#1F2937] mb-2">Username</label>
-                <input type="text" class="input w-full text-[#64748B] mb-2" placeholder="Enter Username" />
+                <input id="user-name" type="text" class="input w-full text-[#64748B] mb-2" placeholder="Enter Username" />
                 <p class="text-[14px] text-[#4A00FF] mb-4">Default: admin</p>
 
                 <label class="label text-left font-medium text-[#1F2937] mb-2">Password</label>
-                <input type="password" class="input w-full text-[#64748B] mb-2" placeholder="Password" />
+                <input id="password" type="password" class="input w-full text-[#64748B] mb-2" placeholder="Password" />
                 <p class="text-[14px] text-[#4A00FF] ">Default: admin123</p>
 
-                <button class="btn bg-[#4A00FF] mt-4 w-full text-white font-semibold">Sign In</button>
+                <button id="login-btn" class="btn bg-[#4A00FF] mt-4 w-full text-white font-semibold">Sign In</button>
             </form>
 
             <!-- separator  -->
@@ -87,7 +87,7 @@
 
     <!-- js link -->
     <script src="./script/login.js"></script>
-    <script src="./script/app.js"></script>
+    
 </body>
 
 </html>

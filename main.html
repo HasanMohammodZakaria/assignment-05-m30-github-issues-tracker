@@ -65,15 +65,15 @@
             <div id="all-btn-container"
                 class="all-btn-container w-full sm:w-11/12 lg:w-10/12 mx-auto bg-white p-6 drop-shadow-sm rounded-lg flex gap-3 flex-wrap">
 
-                <button id="all-issues-tracker-btn" class="btn bg-[#4A00FF] text-white w-[120px]">
+                <button data-status = 'ALL' id="all-issues-tracker-btn" class="btn bg-[#4A00FF] text-white w-[120px]">
                     All
                 </button>
 
-                <button id="open-issues-tracker-btn" class="btn bg-white text-black w-[120px]">
+                <button data-status = 'OPEN' id="open-issues-tracker-btn" class="btn bg-white text-black w-[120px]">
                     Open
                 </button>
 
-                <button id="closed-issues-tracker-btn" class="btn  bg-white text-black w-[120px]">
+                <button data-status = 'CLOSED' id="closed-issues-tracker-btn" class="btn  bg-white text-black w-[120px]">
                     Closed
                 </button>
 
@@ -91,7 +91,9 @@
                         <img src="./assets/Aperture.png" alt="" class="w-[30px] h-[30px]" />
                     </div>
                     <div class="card-body flex fles-col gap-1">
-                        <h2 class="card-title text-xl font-semibold">50 Issues</h2>
+                        <h2 id="total-issue-count" class="card-title text-xl font-semibold">
+                            <span>0 Issues</span>
+                        </h2>
                         <p>Track and manage your project issues</p>
                     </div>
                 </div>
@@ -112,10 +114,10 @@
 
         <!-- ISSUES TRACKER CARD SECTION -->
         <section>
-            <divJ
-                class="card-teacker-container w-full sm:w-11/12 lg:w-10/12 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-[#FBFBFB] p-5 drop-shadow-sm rounded-b-lg border-t border-gray-200">
+            <div
+                class="card-tracker-container w-full sm:w-11/12 lg:w-10/12 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-[#FBFBFB] p-5 drop-shadow-sm rounded-b-lg border-t border-gray-200">
 
-                <div class="card-tracker bg-white drop-shadow-sm rounded-lg">
+                <!-- <div class="card-tracker bg-white drop-shadow-sm rounded-lg">
 
                     <div class="p-5 space-y-3">
                         <div class="flex justify-between">
@@ -147,7 +149,7 @@
                         <p class="text-[12px] text-[#64748B]">#1by john_doe</p>
                         <p class="text-[12px] text-[#64748B]">1/15/2024</p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
     </main>

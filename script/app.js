@@ -3,29 +3,16 @@ let allIssues = [];
 
 const allBtnContainer = document.querySelector(".all-btn-container");
 
-
-
-const loadIssue = async () => {
-    const res = await fetch(
-        "https://phi-lab-server.vercel.app/api/v1/lab/issues",
-    );
-    const data = await res.json();
-    allIssues = data.data;
-    displayIssue(allIssues);
-    countsUpdate(allIssues);
-};
-
-const issuesFilter = (status) => {
-    if (status === "ALL") {
-        return allIssues;
-    };
-    return allIssues.filter(issue => issue.status.toUpperCase() === status);
-};
-
-const countsUpdate = (issues) => {
-    const totalCount = issues.length;
-    document.querySelector('#total-issue-count span').textContent = `${totalCount} Issues`;
+const manageSpinner = (status) => {
+    if (status === true) {
+        document.getElementById('spinner').classList.remove('hidden');
+        document.getElementById('card-container').classList.add('hidden');
+    } else {
+        document.getElementById('card-container').classList.remove('hidden');
+        document.getElementById('spinner').classList.add('hidden');
+    }
 }
+
 
 allBtnContainer.addEventListener("click", (e) => {
     const issueTrackerBtn = e.target.closest("button");
@@ -42,15 +29,45 @@ allBtnContainer.addEventListener("click", (e) => {
     issueTrackerBtn.classList.remove("bg-white", "text-black");
     issueTrackerBtn.classList.add("bg-[#4A00FF]", "text-white");
 
-    const status = issueTrackerBtn.dataset.status;
+    const status = issueTrackerBtn.dataset.status.toUpperCase();
     const filteredIssues = issuesFilter(status);
+    manageSpinner(true);
+
     displayIssue(filteredIssues);
     countsUpdate(filteredIssues);
 
+    manageSpinner(false);
+
 });
 
+const loadIssue = async () => {
+    manageSpinner(true);
+    const res = await fetch(
+        "https://phi-lab-server.vercel.app/api/v1/lab/issues",
+    );
+    const data = await res.json();
+    allIssues = data.data;
+    displayIssue(allIssues);
+    countsUpdate(allIssues);
+    manageSpinner(false);
+};
+
+const issuesFilter = (status) => {
+    if (status === "ALL") {
+        return allIssues;
+    };
+    return allIssues.filter(issue => issue.status.toUpperCase() === status);
+};
+
+const countsUpdate = (issues) => {
+    const totalCount = issues.length;
+    document.querySelector('#total-issue-count span').textContent = `${totalCount} Issues`;
+}
+
+
+
 const priorityColors = {
-    High: 'bg-[#FEECEC] text-[#EF4444]',
+    HIGH: 'bg-[#FEECEC] text-[#EF4444]',
     MEDIUM: 'bg-[#FFF6D1] text-[#F59E0B]',
     LOW: 'bg-[#EEEFF2] text-[#9CA3AF]'
 };
@@ -60,7 +77,7 @@ const statusBorderColors = {
     CLOSED: 'border-t-4 border-[#A855F7]'
 };
 
-const displayIssue = (issues) => {
+const displayIssue = async (issues) => {
     //console.log(issues);
     const cardContainer = document.querySelector(".card-tracker-container");
     cardContainer.innerHTML = "";

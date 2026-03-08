@@ -6,9 +6,11 @@ const allBtnContainer = document.querySelector(".all-btn-container");
 const manageSpinner = (status) => {
     if (status === true) {
         document.getElementById('spinner').classList.remove('hidden');
-        document.getElementById('card-container').classList.add('hidden');
+        document.getElementById('spinner').classList.add('flex');
+        document.querySelector('.card-tracker-container').classList.add('hidden');
     } else {
-        document.getElementById('card-container').classList.remove('hidden');
+        document.querySelector('.card-tracker-container').classList.remove('hidden');
+        document.getElementById('spinner').classList.remove('flex');
         document.getElementById('spinner').classList.add('hidden');
     }
 }
@@ -29,7 +31,7 @@ allBtnContainer.addEventListener("click", (e) => {
     issueTrackerBtn.classList.remove("bg-white", "text-black");
     issueTrackerBtn.classList.add("bg-[#4A00FF]", "text-white");
 
-    const status = issueTrackerBtn.dataset.status.toUpperCase();
+    const status = issueTrackerBtn.dataset.status;
     const filteredIssues = issuesFilter(status);
     manageSpinner(true);
 
@@ -42,10 +44,9 @@ allBtnContainer.addEventListener("click", (e) => {
 
 const loadIssue = async () => {
     manageSpinner(true);
-    const res = await fetch(
-        "https://phi-lab-server.vercel.app/api/v1/lab/issues",
-    );
+    const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues",);
     const data = await res.json();
+    console.log(data);
     allIssues = data.data;
     displayIssue(allIssues);
     countsUpdate(allIssues);
@@ -53,10 +54,10 @@ const loadIssue = async () => {
 };
 
 const issuesFilter = (status) => {
-    if (status === "ALL") {
+    if (status === "all") {
         return allIssues;
     };
-    return allIssues.filter(issue => issue.status.toUpperCase() === status);
+    return allIssues.filter(issue => issue.status === status);
 };
 
 const countsUpdate = (issues) => {
@@ -77,7 +78,7 @@ const statusBorderColors = {
     CLOSED: 'border-t-4 border-[#A855F7]'
 };
 
-const displayIssue = async (issues) => {
+const displayIssue = (issues) => {
     //console.log(issues);
     const cardContainer = document.querySelector(".card-tracker-container");
     cardContainer.innerHTML = "";
@@ -90,7 +91,7 @@ const displayIssue = async (issues) => {
         const priorityLevelColors = priorityColors[priorityLevel] || 'bg-[#FEECEC] text-[#EF4444]';
         const statusColor = statusBorderColors[issue.status.toUpperCase()] || 'border-t-4 border-[#00A96E]';
 
-        const statusImg = issue.status.toUpperCase() === 'OPEN' ? './assets/Open-Status.png' : './assets/Closed- Status .png';
+        const statusImg = issue.status === 'open' ? './assets/Open-Status.png' : './assets/Closed-Status.png';
 
         const labelFirst = issue.labels[0] || "";
         const labelSec = issue.labels[1] || "";

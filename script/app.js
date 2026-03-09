@@ -98,10 +98,6 @@ const displayIssue = (issues) => {
 
         const statusImg = issue.status === 'open' ? './assets/Open-Status.png' : './assets/Closed-Status.png';
 
-        const labelFirst = issue.labels[0] || "";
-        const labelSec = issue.labels[1] || "";
-        const labelFrtUpp = labelFirst.toUpperCase();
-        const labelSecUpp = labelSec.toUpperCase();
 
         const dateOnly = new Date(issue.createdAt).toLocaleDateString("en-US");
 
@@ -118,19 +114,7 @@ const displayIssue = (issues) => {
                         <p class="text-[12px] text-[#64748B]">${issue.description}</p>
 
                         <div class="level-container flex gap-2 flex-wrap">
-                            ${labelFirst ? `
-                            <button
-                                class="text-[#EF4444] text-[12px] font-medium bg-[#FEECEC] border border-[#FECACA] px-4 py-2 rounded-4xl">
-                                <i class="fa-solid fa-bug"></i>
-                                ${labelFrtUpp}
-                            </button>` : ""}
-
-                            ${labelSec ? `
-                            <button
-                                class="text-[#D97706] text-[12px] font-medium bg-[#FFF8DB] border border-[#FDE68A] px-4 py-2 rounded-4xl">
-                                <i class="fa-chisel fa-regular fa-life-ring"></i>
-                                ${labelSecUpp}
-                            </button>` : ""}
+                            ${labelStyle(issue.labels)}
                         </div>
                     </div>
 
@@ -172,20 +156,41 @@ const loadIssueDetail = async (id) => {
 
 }
 
-
 const labelStyle = (labels) => {
     return labels.map((label, index) => {
         const value = label.toUpperCase();
 
-        let text = index === 0 ? 'text-[#EF4444]' : 'text-[#D97706]';
-        let border = index === 0 ? 'border-[#FECACA]' : 'border-[#FDE68A]';
-        let icon = index === 0 ? `<i class="fa-solid fa-bug"></i>` : `<i class="fa-regular fa-life-ring"></i>`;
+        let bg = '';
+        let text = '';
+        let border = '';
+        let icon = '';
+
+        if (index === 0) {
+            text = 'text-[#EF4444]';
+            bg = 'bg-[#FEECEC]';
+            border = 'border-[#FECACA]';
+            icon = `<i class="fa-solid fa-bug"></i>`;
+        }
+
+        if (index === 1) {
+            text = 'text-[#D97706]';
+            bg = 'bg-[#FFF8DB]';
+            border = 'border-[#FDE68A]';
+            icon = `<i class="fa-regular fa-life-ring"></i>`;
+        }
 
         if (value === 'ENHANCEMENT') {
-            bg = 'bg-[#DEFCE8]';
-            text = 'text-[#00A96E]';
-            border = 'border-[#BBF7D0]';
-            icon = `<i class="fa-solid fa-paperclip"></i>`;
+            if (index === 0) {
+                text = 'text-[#00A96E]';
+                bg = 'bg-[#DEFCE8]';
+                border = 'border-[#BBF7D0]';
+                icon = `<i class="fa-solid fa-paperclip"></i>`;
+            } else if (index === 1) {
+                text = 'text-[#007A50]';
+                bg = 'bg-[#D0F7E3]';
+                border = 'border-[#86EFAC]';
+                icon = `<i class="fa-solid fa-paperclip"></i>`;
+            }
         }
 
         return `
@@ -204,36 +209,6 @@ const statusBgColors = {
 const displayIssueDetail = (issue) => {
     console.log(issue);
 
-    // assignee
-    // : 
-    // "john_doe"
-    // author
-    // : 
-    // "security_sam"
-    // createdAt
-    // : 
-    // "2024-01-20T09:00:00Z"
-    // description
-    // : 
-    // "Implement JWT-based authentication with login, registration, and password reset functionality."
-    // id
-    // : 
-    // 5
-    // labels
-    // : 
-    // ['enhancement']
-    // priority
-    // : 
-    // "high"
-    // status
-    // : 
-    // "open"
-    // title
-    // : 
-    // "Add user authentication system"
-    // updatedAt
-    // : 
-    // "2024-01-20T09:00:00Z"
 
     const bgStatusColor = statusBgColors[issue.status.toLowerCase()] || 'bg-[#00A96E] text-white';
 

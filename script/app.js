@@ -173,9 +173,32 @@ const loadIssueDetail = async (id) => {
 }
 
 
+const labelStyle = (labels) => {
+    return labels.map((label, index) => {
+        const value = label.toUpperCase();
+
+        let text = index === 0 ? 'text-[#EF4444]' : 'text-[#D97706]';
+        let border = index === 0 ? 'border-[#FECACA]' : 'border-[#FDE68A]';
+        let icon = index === 0 ? `<i class="fa-solid fa-bug"></i>` : `<i class="fa-regular fa-life-ring"></i>`;
+
+        if (value === 'ENHANCEMENT') {
+            bg = 'bg-[#DEFCE8]';
+            text = 'text-[#00A96E]';
+            border = 'border-[#BBF7D0]';
+            icon = `<i class="fa-solid fa-paperclip"></i>`;
+        }
+
+        return `
+            <button class="${text} ${bg} border ${border} text-[12px] font-medium px-4 py-2 rounded-4xl flex items-center gap-1">
+                ${icon} ${value}
+            </button>
+        `;
+    }).join('');
+};
+
 const statusBgColors = {
     open: 'bg-[#00A96E] text-white',
-    close: 'bg-[#A855F7] text-white'
+    closed: 'bg-[#A855F7] text-white'
 };
 
 const displayIssueDetail = (issue) => {
@@ -237,18 +260,8 @@ const displayIssueDetail = (issue) => {
                         </p>
                     </div>
                     <div class="level-container flex gap-2 flex-wrap">
-
-                        <button
-                            class="text-[#EF4444] text-[12px] font-medium bg-[#FEECEC] border border-[#FECACA] px-4 py-2 rounded-4xl">
-                            <i class="fa-solid fa-bug"></i>
-                            BUG
-                        </button>
-
-                        <button
-                            class="text-[#D97706] text-[12px] font-medium bg-[#FFF8DB] border border-[#FDE68A] px-4 py-2 rounded-4xl">
-                            <i class="fa-chisel fa-regular fa-life-ring"></i>
-                            HELP WANTED
-                        </button>
+                       ${labelStyle(issue.labels)}
+                        
                     </div>
                     <p class="text-[12px] text-[#64748B]">
                         ${issue.description}
@@ -256,7 +269,7 @@ const displayIssueDetail = (issue) => {
                     <div class="bg-[#F8FAFC] p-4 rounded-lg flex ">
                         <div class="w-1/2 flex flex-col">
                             <p class="text-4 text-[#64748B]">Assignee:</p>
-                            <h4 class="text-4 text-[#1F2937] font-semibold">${issue.assignee}</h4>
+                            <h4 class="text-4 text-[#1F2937] font-semibold">${issue.assignee ? issue.assignee : N / A}</h4>
                         </div>
                         <div class="w-1/2">
                             <p class="text-4 text-[#64748B]">Priority:</p>
@@ -269,7 +282,7 @@ const displayIssueDetail = (issue) => {
                 <div class="modal-action">
                     <form method="dialog">
                         <!-- if there is a button in form, it will close the modal -->
-                        <button class="btn">Close</button>
+                        <button class="btn bg-[#4A00FF] text-white">Close</button>
                     </form>
                 </div>
 

@@ -41,15 +41,25 @@
                     <h2 class="text-6 font-semibold text-[#1F2937]">GitHub Issues Tracker</h2>
                 </div>
                 <div class="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
-                    <div class="relative flex-1 w-full md:w-auto max-w-sm">
+                    <!-- <div class="relative flex-1 w-full md:w-auto max-w-sm">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                             <i class="fa-solid fa-magnifying-glass text-[#64748B]"></i>
                         </span>
                         <input type="text" placeholder="Search issues..."
                             class="input input-bordered w-full pl-10 text-[#64748B]" />
-                    </div>
+                    </div> -->
+                    <label class="input">
+                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
+                                stroke="currentColor">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </g>
+                        </svg>
+                        <input id="input-search" type="search" required placeholder="Search" />
+                    </label>
 
-                    <button class="btn btn-primary flex items-center gap-2 w-full sm:w-auto justify-center">
+                    <button id="btn-search" class="btn btn-primary flex items-center gap-2 w-full sm:w-auto justify-center">
                         <i class="fa-solid fa-plus"></i> New Issue
                     </button>
 
@@ -65,15 +75,15 @@
             <div id="all-btn-container"
                 class="all-btn-container w-full sm:w-11/12 lg:w-10/12 mx-auto bg-white p-6 drop-shadow-sm rounded-lg flex gap-3 flex-wrap">
 
-                <button data-status = 'all' id="all-issues-tracker-btn" class="btn bg-[#4A00FF] text-white w-[120px]">
+                <button data-status='all' id="all-issues-tracker-btn" class="btn bg-[#4A00FF] text-white w-[120px]">
                     All
                 </button>
 
-                <button data-status = 'open' id="open-issues-tracker-btn" class="btn bg-white text-black w-[120px]">
+                <button data-status='open' id="open-issues-tracker-btn" class="btn bg-white text-black w-[120px]">
                     Open
                 </button>
 
-                <button data-status = 'closed' id="closed-issues-tracker-btn" class="btn  bg-white text-black w-[120px]">
+                <button data-status='closed' id="closed-issues-tracker-btn" class="btn  bg-white text-black w-[120px]">
                     Closed
                 </button>
 
@@ -113,9 +123,10 @@
         </section>
 
         <!-- spinner section -->
-         <section id="spinner" class="spinner-section w-full sm:w-11/12 lg:w-10/12 mx-auto justify-center items-center p-5 hidden">
+        <section id="spinner"
+            class="spinner-section w-full sm:w-11/12 lg:w-10/12 mx-auto justify-center items-center p-5 hidden">
             <span class="loading loading-bars loading-xl"></span>
-         </section>
+        </section>
 
         <!-- ISSUES TRACKER CARD SECTION -->
         <section>
@@ -157,6 +168,67 @@
                 </div> -->
             </div>
         </section>
+
+        <!-- modal section -->
+        <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+
+        <dialog id="issue_modal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <div id="details-container" class="space-y-4">
+                    <!-- <div>
+                        <h2 class="text-6 text-[#1F2937] font-bold">Fix broken image uploads</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="bg-[#00A96E] text-white px-4 py-2 rounded-4xl ">Opened</button>
+                        <p class="text-[12px] text-[#64748B]">
+                            <i class="fa-solid fa-circle text-[8px]"></i>
+                            Opened by Fahim Ahmed
+                        </p>
+                        <p class="text-[12px] text-[#64748B]">
+                            <i class="fa-solid fa-circle text-[8px]"></i>
+                            22/02/2026
+                        </p>
+                    </div>
+                    <div class="level-container flex gap-2 flex-wrap">
+                           
+                        <button
+                            class="text-[#EF4444] text-[12px] font-medium bg-[#FEECEC] border border-[#FECACA] px-4 py-2 rounded-4xl">
+                            <i class="fa-solid fa-bug"></i>
+                            BUG
+                        </button>
+                            
+                        <button
+                            class="text-[#D97706] text-[12px] font-medium bg-[#FFF8DB] border border-[#FDE68A] px-4 py-2 rounded-4xl">
+                            <i class="fa-chisel fa-regular fa-life-ring"></i>
+                            HELP WANTED
+                        </button>
+                    </div>
+                    <p class="text-[12px] text-[#64748B]">
+                        The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.
+                    </p>
+                    <div class="bg-[#F8FAFC] p-4 rounded-lg flex ">
+                        <div class="w-1/2 flex flex-col">
+                            <p class="text-4 text-[#64748B]">Assignee:</p>
+                            <h4 class="text-4 text-[#1F2937] font-semibold">Fahim Ahmed</h4>
+                        </div>
+                        <div class="w-1/2">
+                            <p class="text-4 text-[#64748B]">Priority:</p>
+                            <div class="w-20 h-6 badge text-3 p-2 rounded-4xl">
+                                HIGH
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- <div class="modal-action">
+                    <form method="dialog"> -->
+                <!-- if there is a button in form, it will close the modal -->
+                <!-- <button class="btn">Close</button>
+                    </form>
+                </div> -->
+            </div>
+        </dialog>
+
     </main>
 
 

@@ -12,15 +12,15 @@ const manageSpinner = (status) => {
         document.querySelector('.card-tracker-container').classList.remove('hidden');
         document.getElementById('spinner').classList.remove('flex');
         document.getElementById('spinner').classList.add('hidden');
-    }
-}
+    };
+};
 
 
 allBtnContainer.addEventListener("click", (e) => {
     const issueTrackerBtn = e.target.closest("button");
     if (!issueTrackerBtn) {
         return;
-    }
+    };
 
     const buttons = allBtnContainer.querySelectorAll("button");
 
@@ -28,6 +28,7 @@ allBtnContainer.addEventListener("click", (e) => {
         button.classList.remove("bg-[#4A00FF]", "text-white");
         button.classList.add("bg-white", "text-black");
     });
+
     issueTrackerBtn.classList.remove("bg-white", "text-black");
     issueTrackerBtn.classList.add("bg-[#4A00FF]", "text-white");
 
@@ -46,7 +47,6 @@ const loadIssue = async () => {
     manageSpinner(true);
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues",);
     const data = await res.json();
-    console.log(data);
     allIssues = data.data;
     displayIssue(allIssues);
     countsUpdate(allIssues);
@@ -63,9 +63,7 @@ const issuesFilter = (status) => {
 const countsUpdate = (issues) => {
     const totalCount = issues.length;
     document.querySelector('#total-issue-count span').textContent = `${totalCount} Issues`;
-}
-
-
+};
 
 const priorityColors = {
     HIGH: 'bg-[#FEECEC] text-[#EF4444]',
@@ -79,12 +77,11 @@ const statusBorderColors = {
 };
 
 const displayIssue = (issues) => {
-    //console.log(issues);
+
     const cardContainer = document.querySelector(".card-tracker-container");
     cardContainer.innerHTML = "";
 
     issues.forEach((issue) => {
-        //console.log(issue);
 
         const card = document.createElement("div");
         card.dataset.id = issue.id;
@@ -93,8 +90,6 @@ const displayIssue = (issues) => {
         const priorityLevelColors = priorityColors[priorityLevel] || 'bg-[#FEECEC] text-[#EF4444]';
         const statusKey = issue.status.trim().toLowerCase();
         const statusColor = statusBorderColors[statusKey] || 'border-t-4 border-[#00A96E]';
-
-        //console.log("Status:", issue.status, "StatusKey:", statusKey, "StatusColor:", statusColor);
 
         const statusImg = issue.status === 'open' ? './assets/Open-Status.png' : './assets/Closed-Status.png';
 
@@ -143,7 +138,7 @@ issuesContainer.addEventListener('click', (e) => {
     };
 
     const id = cardTracker.dataset.id;
-    //my_modal_5.showModal();
+
     loadIssueDetail(id);
 });
 
@@ -272,9 +267,6 @@ const searchBtn = document.getElementById('btn-search');
 searchBtn.addEventListener('click', () => {
     const searchInput = document.getElementById('input-search');
     const searchValue = searchInput.value.trim().toLowerCase();
-    //console.log(searchValue);
-
-    // const searchUrl = 'https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q={searchText}';
 
     manageSpinner(true);
 

@@ -1,129 +1,40 @@
-# 🌟 Welcome To (সহজ সরল সিম্পল) Assignment - 5
+## 1.What is the difference between var, let, and const?
 
-# **📅 Deadline For 60 marks:** 9th March, 2026 (11:59 pm ⏱️)  
-#  📅 No Deadline For 50 marks  
-# **📅 Deadline For 30 marks:** Any time after 9th March.
+**Answer:** difference between var, let and const
 
----
-
-# Assignment-05: GitHub Issues Tracker
-
-
-### **API Endpoints:**
-###  **All Issues:** 
-  - https://phi-lab-server.vercel.app/api/v1/lab/issues 
+| Feature | var | let | const |
+|--------|-----|-----|------|
+| Scope | Function scoped. It is accessible throughout the entire function where it is declared. It does not respect block scope `{}`. | Block scoped. It is only accessible inside the block `{}` where it is declared. | Block scoped like `let`, meaning it can only be used within the block `{}` where it is declared. |
+| Redeclare | Variables declared with `var` can be redeclared in the same scope without causing an error. | Variables declared with `let` cannot be redeclared in the same scope. Attempting to do so will cause an error. | Variables declared with `const` also cannot be redeclared in the same scope. |
+| Reassign | The value of a `var` variable can be changed or reassigned after declaration. | The value of a `let` variable can also be reassigned after it is declared. | A `const` variable cannot be reassigned after it is declared. However, for objects and arrays, their internal values can still be modified. |
+| Hoisting | `var` variables are hoisted and initialized with `undefined`, so they can be accessed before declaration without throwing an error (though the value will be `undefined`). | `let` variables are hoisted but not initialized. Accessing them before declaration results in a ReferenceError due to the Temporal Dead Zone (TDZ). | `const` variables behave like `let` in hoisting. They are hoisted but not initialized, and accessing them before declaration causes a ReferenceError due to the Temporal Dead Zone (TDZ). |
+| Initialization | `var` variables can be declared without assigning a value. | `let` variables can also be declared without an initial value. | `const` variables must be initialized at the time of declaration. |
+| Use Case | Mostly used in older JavaScript code. Modern JavaScript usually avoids `var` due to scope issues. | Used when a variable value needs to change later in the program. | Used when a variable should remain constant and not be reassigned. It is the preferred default in modern JavaScript. |
 
 
-###  **Single Issue:**
-   - https://phi-lab-server.vercel.app/api/v1/lab/issue/{id}
+## 2.What is the spread operator (...)?
 
-   - Example: https://phi-lab-server.vercel.app/api/v1/lab/issue/33
-
-
-###  **Search Issue:** https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q={searchText}
-
-   - Example:  https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=notifications
+**Answer:** The Spread Operator (...) in JavaScript is used to expand or unpack elements of an array, object, or iterable into individual elements. It makes copying, merging, and passing values much easier.
 
 
----
+## 3.What is the difference between map(), filter(), and forEach()?
 
-## 📝 Main Requirements
+**Answer:** difference between map(), filter(), and forEach()
 
-## 🎨 Design Part
-
-## Login Page
-- Create a login page containing a logo, title, and sub-title
-- Below that, there will be 2 inputs, a sign-in button, and a demo credential to sign in. Follow the Figma for this page 
-- Styled as per Figma
-
-## Main Page: 
-
-### Navbar: 
-
-- Navbar with website logo/name on the left
-- Search input and button on the right
-
-### Tab Section like Figma: 
-
-- 3 tab ( All, Open, Closed) at the top of this section.(**All**, **Open**, **Closed**)
-
-- Below the tab, there will be an icon, the issue count, some text on the left, and an open and closed marker on the right
-
-- Responsiveness: The website should be responsive for mobile devices. It is totally up to you. 
+| Feature | map() | filter() | forEach() |
+|-------|------|---------|----------|
+| Purpose | Transforms each element of an array | Selects elements based on a condition | Executes a function for each array element |
+| Return Value | Returns a new array with transformed elements | Returns a new array with filtered elements | Returns `undefined` |
+| Array Length | Same length as the original array | Can be smaller depending on condition | Same as original but no new array |
+| Chainable | Yes | Yes | No (because it returns undefined) |
+| Use Case | Modify or transform array values | Get elements that match a condition | Perform actions like logging or updating UI |
 
 
---- 
+## 4.What is an arrow function?
 
+**Answer:** An Arrow Function is a shorter and more concise way to write functions in JavaScript. It was introduced in ES6 (ECMAScript 2015) and uses the => (arrow) syntax.
 
-## ⚙️ Functionalities
-- In login page, there will be default admin credentials (username, password). You need to sign in using these credentials.
+## 5.What are template literals?
 
-- Load all issues and display as per Figma
-
-- On clicking on an open or closed tab, it will load the issues data of the related tab and show it in a display-like card in a 4-column layout like Figma. By default, it will show all data 
-
-- Each card shows:
-  - Title
-  - Description
-  - Status
-  - Category
-  - Author
-  - Priority
-  - Label
-  - CreatedAt
-- Clicking on a tree name in a card will open a modal and show all the information about that Issue. 
-
-### 🚀 Challenges
-
-
-- Show the card Top border based on their category(open, closed), open card will have Green Boder, closed card will have a purple border on top. 
-
-- Loading spinner on data load
-
-- Show active button on changing category names
-
-- Implement Search Functionality and 8 meaningful github commit.  
-
-- Create a readme file and answer this question on your own. Don’t copy-paste from Google or any AI chatbot. 
-    - 1️⃣ What is the difference between var, let, and const?
-    - 2️⃣ What is the spread operator (...)?
-    - 3️⃣ What is the difference between map(), filter(), and forEach()?
-    - 4️⃣ What is an arrow function?
-    - 5️⃣ What are template literals?
-
-
----
-
-## 🛠️ Technology Stack
-
-- **HTML**
-- **CSS** (Vanilla/Tailwind/DaisyUI)
-- **JavaScript** (Vanilla)
-
----
-
-## 🔑 Demo Credentials
-
-```text
-Username: admin
-Password: admin123
-```
-
-
----
-
-### Optional: 
- - No need to show status: Open, Closed styles On modals. 
- - No Need to show icon on labels 
- - No need to apply styles on Priority 
---- 
-
-
-## 📤 What to submit
-
-- **GitHub Repository Link:**
-- **Live Site Link:**
-
----
-
-
+**Answer:** 
+Template Literals are a feature in JavaScript (introduced in ES6) that allow you to create strings more easily using backticks ( ` ` ) instead of single (' ') or double (" ") quotes. They support string interpolation, multi-line strings, and embedded expressions.
